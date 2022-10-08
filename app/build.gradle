@@ -51,7 +51,7 @@ dependencies {
 //    implementation project(":network-debug.aar")
     // from libs
 //    implementation files('libs/network-debug.aar') // or libs/network-release.aar
-    implementation files('/Users/testbook/StudioProjects/ArrUsage/network/build/outputs/aar/network-debug.aar') // or libs/network-release.aar
+    implementation files('/Users/testbook/StudioProjects/ArrUsage/EzyTap/network/build/outputs/aar/network-debug.aar')
 
 
 
