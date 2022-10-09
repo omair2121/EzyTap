@@ -2,6 +2,7 @@ package com.secrets.aarusage.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.secrets.aarusage.R
@@ -12,6 +13,7 @@ import com.secrets.aarusage.presentation.adapters.EzItemDecor
 import com.secrets.network.models.UIResponse
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import retrofit2.HttpException
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -37,7 +39,14 @@ class MainActivity : AppCompatActivity() {
         when(result) {
             is ResultResource.Success -> submitData(result.data)
             is ResultResource.Loading -> {}
-            is ResultResource.Error -> {}
+            is ResultResource.Error -> {
+                val exception = result.exception
+                val errorText = if (exception is HttpException) {
+                    "Internet connection error"
+                } else "Something went wrong"
+
+                Toast.makeText(this, errorText, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -56,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         adapter = EzAdapter()
         binding.recycler.layoutManager = LinearLayoutManager(this)
         binding.recycler.adapter = adapter
-        binding.recycler.addItemDecoration(EzItemDecor())
+        if (binding.recycler.itemDecorationCount == 0)
+            binding.recycler.addItemDecoration(EzItemDecor())
     }
 }

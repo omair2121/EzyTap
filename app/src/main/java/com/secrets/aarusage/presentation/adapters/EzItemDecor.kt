@@ -15,16 +15,20 @@ class EzItemDecor: RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-//        super.getItemOffsets(outRect, view, parent, state)
         val type = parent.layoutManager?.getItemViewType(view)
 
         when(type) {
-            EditTextViewHolder.layout,
             ButtonViewHolder.layout,
             LabelViewHolder.layout -> {
-                outRect.top = 20
-                outRect.left = 16
-                outRect.right = 16
+                outRect.top = 30
+                outRect.left = 20
+                outRect.right = 20
+                outRect.bottom = 20
+            }
+            EditTextViewHolder.layout -> {
+                outRect.top = 10
+                outRect.left = 20
+                outRect.right = 20
                 outRect.bottom = 20
             }
         }
