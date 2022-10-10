@@ -9,20 +9,20 @@ import com.secrets.aarusage.databinding.ItemLabelBinding
 import com.secrets.network.models.UiData
 import java.util.zip.Inflater
 
-class ButtonViewHolder(private val binding: ItemButtonBinding): RecyclerView.ViewHolder(binding.root) {
+class ButtonViewHolder(private val binding: ItemButtonBinding, private val btnListener: () -> Unit): RecyclerView.ViewHolder(binding.root) {
 
     companion object {
         const val layout = R.layout.item_button
-        fun create(inflater: LayoutInflater, viewGroup: ViewGroup): ButtonViewHolder {
+        fun create(inflater: LayoutInflater, viewGroup: ViewGroup, btnListener: () -> Unit): ButtonViewHolder {
             val binding = ItemButtonBinding.inflate(inflater, viewGroup, false)
-            return ButtonViewHolder(binding)
+            return ButtonViewHolder(binding, btnListener)
         }
     }
 
     fun bind(item: UiData) {
         binding.button.text = item.value ?: item.hint ?: item.uiType
         binding.button.setOnClickListener {
-
+                btnListener.invoke()
         }
     }
 }

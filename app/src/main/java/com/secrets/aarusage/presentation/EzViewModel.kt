@@ -10,7 +10,7 @@ import com.secrets.network.models.UIResponse
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class EzViewModel @Inject constructor(private val repo: UIRepository) : ViewModel() {
+class EzViewModel @Inject constructor(private val repo: UIRepository) : ViewModel(), ValueChangeListener {
 
     private val _uiResponse = MutableLiveData<ResultResource<UIResponse>>()
     val uiResponse: LiveData<ResultResource<UIResponse>>
@@ -28,4 +28,9 @@ class EzViewModel @Inject constructor(private val repo: UIRepository) : ViewMode
         }
     }
 
+    override fun onValueChange(position: Int, value: String) {
+        if (_uiResponse.value is ResultResource.Success) {
+              (_uiResponse.value as? ResultResource.Success<UIResponse>)?.data?.uidata?.getOrNull(position)?.value = value
+        }
+    }
 }

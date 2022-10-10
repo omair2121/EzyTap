@@ -10,6 +10,7 @@ import com.secrets.aarusage.data.ResultResource
 import com.secrets.aarusage.databinding.ActivityMainBinding
 import com.secrets.aarusage.presentation.adapters.EzAdapter
 import com.secrets.aarusage.presentation.adapters.EzItemDecor
+import com.secrets.aarusage.util.load
 import com.secrets.network.models.UIResponse
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun submitData(data: UIResponse) {
+        binding.textView.text = data.headingText
+        binding.imageView.load(data.logoUrl)
         adapter.submitList(data.uidata)
     }
 
@@ -60,9 +63,14 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchCustomUI()
     }
 
+    private fun startDetailsActivity() {
+        if (viewModel.uiResponse.value is ResultResource.Success)
+            SecondActivity.start(this, (viewModel.uiResponse.value as ResultResource.Success<UIResponse>).data)
+    }
+
     private lateinit var adapter: EzAdapter
     private fun initRecyclerView() {
-        adapter = EzAdapter()
+        adapter = EzAdapter(viewModel) { startDetailsActivity() }
         binding.recycler.layoutManager = LinearLayoutManager(this)
         binding.recycler.adapter = adapter
         if (binding.recycler.itemDecorationCount == 0)

@@ -48,10 +48,10 @@ dependencies {
 
     //----------- aar dependency of network module -----------------
     // direct module dependency
-//    implementation project(":network-debug.aar")
+//    implementation project(":network")
     // from libs
-//    implementation files('libs/network-debug.aar') // or libs/network-release.aar
-    implementation files('/Users/testbook/StudioProjects/ArrUsage/EzyTap/network/build/outputs/aar/network-debug.aar')
+    implementation files('libs/network-debug.aar') // or libs/network-release.aar
+//    implementation files('/Users/testbook/StudioProjects/ArrUsage/EzyTap/network/build/outputs/aar/network-debug.aar')
 
 
 
