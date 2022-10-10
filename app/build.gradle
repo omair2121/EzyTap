@@ -54,6 +54,7 @@ dependencies {
 //    implementation files('/Users/testbook/StudioProjects/ArrUsage/EzyTap/network/build/outputs/aar/network-debug.aar')
 
 
+    // can do centralized dependencies by declaring it in project level buildScript file, not doing bcoz of time limit
 
 
     // Retrofit

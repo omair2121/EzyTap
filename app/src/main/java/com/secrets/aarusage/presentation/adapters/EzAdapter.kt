@@ -11,6 +11,11 @@ import com.secrets.aarusage.presentation.holders.LabelViewHolder
 import com.secrets.aarusage.util.Constants
 import com.secrets.network.models.UiData
 
+
+/**
+ * this adapter is main adapter having 2 listeners, one is for edit text, and other for button click.
+ * @param editTextListener is implemented in viewmodel, so direct communication with livedata is happening
+ */
 class EzAdapter(private val editTextListener: ValueChangeListener, private val btnListener: () -> Unit): ListAdapter<UiData, RecyclerView.ViewHolder>(EzDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val viewHolder: RecyclerView.ViewHolder

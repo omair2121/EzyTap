@@ -13,6 +13,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
+/**
+ * using hilt for dependency injection
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object AppDependencies {

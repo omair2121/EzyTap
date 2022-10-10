@@ -14,6 +14,11 @@ import com.secrets.network.models.UiData
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+/**
+ * It wasnt clear what we have to do in activity2, as per my understading i passed the value from activity1 and used same adapter to display the updated value
+ */
+
 @AndroidEntryPoint
 class SecondActivity : AppCompatActivity() {
     companion object {
